@@ -1365,17 +1365,11 @@ st.markdown(
         background: #e8eef6;
         border-radius: 0.75rem;
         padding: 0.2rem;
-        margin-top: 1.1rem;
+        margin-top: 0.6rem;
         overflow: visible;
     }
     div[data-testid="stSegmentedControl"] > label {
-        display: block;
-        margin: 0.35rem 0 0.65rem;
-        padding-top: 0.2rem;
-        font-size: 0.78rem;
-        font-weight: 700;
-        color: #475569;
-        line-height: 1.2;
+        display: none;
     }
     div[data-testid="stSegmentedControl"] button {
         border-radius: 0.55rem;
@@ -1415,7 +1409,7 @@ else:
     tab_names = ["지역별 분석", "업종별 분석"]
     deep_tab = st.session_state.get("deep_analysis_tab", "지역별 분석")
     deep_tab = st.segmented_control(
-        "분석 주제",
+        "",
         tab_names,
         default=deep_tab,
         key="deep_analysis_tab",
