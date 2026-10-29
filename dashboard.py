@@ -1097,6 +1097,12 @@ def set_dashboard_detail_region() -> None:
     st.session_state.dashboard_region = None if region == "선택 안 함" else region
 
 
+def select_dashboard_region(region: str) -> None:
+    """전체 지역 바로가기 버튼에서 선택한 지역을 위젯 상태와 함께 갱신한다."""
+    st.session_state.dashboard_region = region
+    st.session_state.dashboard_detail_region = region
+
+
 def render_dashboard_home(data: pd.DataFrame, boundary_data: dict) -> None:
     """이미지의 정보 구조를 따르는 대시보드 홈을 렌더링한다."""
     region_names = sorted(data["읍면동명"].dropna().unique().tolist())
@@ -1256,15 +1262,14 @@ def render_dashboard_home(data: pd.DataFrame, boundary_data: dict) -> None:
         with st.expander("전체 지역에서 찾기"):
             region_columns = st.columns(5)
             for index, region in enumerate(region_names):
-                if region_columns[index % 5].button(
+                region_columns[index % 5].button(
                     region,
                     key=f"dashboard_region_{region}",
                     type="primary" if region == st.session_state.dashboard_region else "secondary",
                     use_container_width=True,
-                ):
-                    st.session_state.dashboard_region = region
-                    st.session_state.dashboard_detail_region = region
-                    st.rerun()
+                    on_click=select_dashboard_region,
+                    args=(region,),
+                )
 
     with st.expander("분석 기준과 데이터 주의사항"):
         st.write(
