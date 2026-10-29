@@ -1365,12 +1365,13 @@ st.markdown(
         background: #e8eef6;
         border-radius: 0.75rem;
         padding: 0.2rem;
-        margin-top: 0.6rem;
+        margin-top: 1.1rem;
         overflow: visible;
     }
     div[data-testid="stSegmentedControl"] > label {
         display: block;
-        margin-bottom: 0.55rem;
+        margin: 0.35rem 0 0.65rem;
+        padding-top: 0.2rem;
         font-size: 0.78rem;
         font-weight: 700;
         color: #475569;
@@ -1402,9 +1403,6 @@ with st.sidebar:
     else:
         st.markdown("**심층분석**")
         st.caption("지역별·업종별 주제를 심층적으로 비교합니다.")
-        active_deep_tab = st.session_state.get("deep_analysis_tab", "지역별 분석")
-        if active_deep_tab == "업종별 분석":
-            render_topic1_filters()
 
 if main_menu == "대시보드":
     st.title("제주 관광소비 전체 현황")
