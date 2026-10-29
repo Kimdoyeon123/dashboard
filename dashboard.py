@@ -1252,6 +1252,8 @@ def render_dashboard_home(data: pd.DataFrame, boundary_data: dict) -> None:
             current_detail = (
                 selected_region if selected_region in detail_options else "선택 안 함"
             )
+        if st.session_state.get("dashboard_detail_region") != current_detail:
+            st.session_state.dashboard_detail_region = current_detail
         st.selectbox(
             "선별 지역 빠른 조회",
             detail_options,
